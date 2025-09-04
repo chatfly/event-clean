@@ -1,5 +1,6 @@
 package dev.java10x.EventClean.infrastructure.mapper;
 
+import dev.java10x.EventClean.core.entities.Evento;
 import dev.java10x.EventClean.infrastructure.dtos.EventoDto;
 import dev.java10x.EventClean.infrastructure.persistence.EventoEntity;
 import org.springframework.stereotype.Component;
@@ -7,35 +8,35 @@ import org.springframework.stereotype.Component;
 @Component
 public class EventoDtoMapper {
 
-    public EventoEntity map(EventoDto dto)
+    public Evento map(EventoDto dto)
     {
-        EventoEntity entity = new EventoEntity();
-        entity.setId(dto.getId());
-        entity.setNome(dto.getNome());
-        entity.setDescricao(dto.getDescricao());
-        entity.setIdentificador(dto.getIdentificador());
-        entity.setDataInicio(dto.getDataInicio());
-        entity.setDataFim(dto.getDataFim());
-        entity.setLocalEvento(dto.getLocalEvento());
-        entity.setOrganizador(dto.getOrganizador());
-        entity.setCapacidade(dto.getCapacidade());
-        entity.setTipo(dto.getTipo());
-        return entity;
+        return new Evento(
+                dto.getId(),
+                dto.getNome(),
+                dto.getDescricao(),
+                dto.getIdentificador(),
+                dto.getDataInicio(),
+                dto.getDataFim(),
+                dto.getLocalEvento(),
+                dto.getCapacidade(),
+                dto.getOrganizador(),
+                dto.getTipo()
+        );
     }
 
-    public EventoDto map(EventoEntity entity)
+    public EventoDto map(Evento evento)
     {
         EventoDto dto = new EventoDto();
-        dto.setId(entity.getId());
-        dto.setNome(entity.getNome());
-        dto.setDescricao(entity.getDescricao());
-        dto.setIdentificador(entity.getIdentificador());
-        dto.setDataInicio(entity.getDataInicio());
-        dto.setDataFim(entity.getDataFim());
-        dto.setLocalEvento(entity.getLocalEvento());
-        dto.setOrganizador(entity.getOrganizador());
-        dto.setCapacidade(entity.getCapacidade());
-        dto.setTipo(entity.getTipo());
+        dto.setId(evento.id());
+        dto.setNome(evento.nome());
+        dto.setDescricao(evento.descricao());
+        dto.setIdentificador(evento.identificador());
+        dto.setDataInicio(evento.dataInicio());
+        dto.setDataFim(evento.dataFim());
+        dto.setLocalEvento(evento.localEvento());
+        dto.setOrganizador(evento.organizador());
+        dto.setCapacidade(evento.capacidade());
+        dto.setTipo(evento.tipo());
         return dto;
     }
 
