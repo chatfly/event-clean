@@ -1,7 +1,5 @@
 package dev.java10x.EventClean.infrastructure.presentation;
-
 import dev.java10x.EventClean.core.entities.Evento;
-import dev.java10x.EventClean.core.usecases.CriarEventoUsecase;
 import dev.java10x.EventClean.core.usecases.criarEventoUsecase;
 import dev.java10x.EventClean.infrastructure.dtos.EventoDto;
 import dev.java10x.EventClean.infrastructure.mapper.EventoDtoMapper;
