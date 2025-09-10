@@ -13,7 +13,7 @@ public class criarEventoUsecaseImpl implements criarEventoUsecase {
 
     @Override
     public Evento execute(Evento evento){
-        return null;
+        return eventoGateway.criarEvento(evento);
     }
 
 }

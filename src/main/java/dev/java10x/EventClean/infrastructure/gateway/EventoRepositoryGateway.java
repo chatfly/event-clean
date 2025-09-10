@@ -6,6 +6,9 @@ import dev.java10x.EventClean.infrastructure.mapper.EventoEntityMapper;
 import dev.java10x.EventClean.infrastructure.persistence.EventoEntity;
 import dev.java10x.EventClean.infrastructure.persistence.EventoRepository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class EventoRepositoryGateway implements EventoGateway {
 
     private final EventoRepository eventoRepository;
@@ -21,6 +24,14 @@ public class EventoRepositoryGateway implements EventoGateway {
         EventoEntity entity = eventoEntityMapper.map(evento);
         EventoEntity novoEvento = eventoRepository.save(entity);
         return eventoEntityMapper.map(novoEvento);
+    }
+
+    @Override
+    public List<Evento> listarEventos() {
+        List<EventoEntity> eventos = eventoRepository.findAll();
+        return eventos.stream()
+                .map(eventoEntityMapper::map)
+                .collect(Collectors.toList());
     }
 
 }
