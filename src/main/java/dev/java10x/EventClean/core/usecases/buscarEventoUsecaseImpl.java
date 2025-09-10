@@ -5,16 +5,16 @@ import dev.java10x.EventClean.core.gateway.EventoGateway;
 
 import java.util.List;
 
-public class buscarEventoCaseImpl implements buscarEventoCase {
+public class buscarEventoUsecaseImpl implements buscarEventoUsecase {
 
     private final EventoGateway eventoGateway;
 
-    public buscarEventoCaseImpl(EventoGateway eventoGateway) {
+    public buscarEventoUsecaseImpl(EventoGateway eventoGateway) {
         this.eventoGateway = eventoGateway;
     }
 
     @Override
-    public List<Evento> execute(Long id) {
+    public List<Evento> execute() {
         return eventoGateway.listarEventos();
     }
 
