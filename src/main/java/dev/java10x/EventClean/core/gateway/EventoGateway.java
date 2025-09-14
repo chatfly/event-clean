@@ -8,5 +8,7 @@ public interface EventoGateway {
 
     public Evento criarEvento(Evento evento);
     public List<Evento> listarEventos();
+    boolean existePorIdentificador(String identificador);
+    public Evento filtroIdentificador(String identificador);
 
 }

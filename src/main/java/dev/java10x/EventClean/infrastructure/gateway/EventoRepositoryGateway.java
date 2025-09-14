@@ -34,4 +34,14 @@ public class EventoRepositoryGateway implements EventoGateway {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public boolean existePorIdentificador(String identificador) {
+        return eventoRepository.findAll().stream()
+                .anyMatch(evento -> evento.getIdentificador().equals(identificador));
+    }
+
+    @Override
+    public Evento filtroIdentificador(String identificador) {
+        return eventoRepository.findByIdentificador(identificador);
+    }
 }
