@@ -10,5 +10,6 @@ public interface EventoGateway {
     public List<Evento> listarEventos();
     boolean existePorIdentificador(String identificador);
     public Evento filtroIdentificador(String identificador);
+    public String criarIdentificador();
 
 }

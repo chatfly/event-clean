@@ -7,6 +7,7 @@ import dev.java10x.EventClean.infrastructure.persistence.EventoEntity;
 import dev.java10x.EventClean.infrastructure.persistence.EventoRepository;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class EventoRepositoryGateway implements EventoGateway {
@@ -43,5 +44,20 @@ public class EventoRepositoryGateway implements EventoGateway {
     @Override
     public Evento filtroIdentificador(String identificador) {
         return eventoRepository.findByIdentificador(identificador);
+    }
+
+    @Override
+    public String criarIdentificador() {
+        StringBuilder id = new StringBuilder();
+        for(int i = 0; i<3;  i++)
+        {
+            Random r = new Random();
+            id.append((char) (r.nextInt(26) + 'a'));
+        }
+        for(int i = 0; i<3; i++)
+        {
+            id.append((int) (Math.random() * 10));
+        }
+        return id.toString().toUpperCase();
     }
 }

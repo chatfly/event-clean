@@ -32,4 +32,9 @@ public class BeanConfiguration {
         return new filtroIdentificadorUsecaseImpl(eventoGateway);
     }
 
+    @Bean
+    public criarIdentificadorUsecase criarIdentificador(EventoGateway eventoGateway) {
+        return new criarIdentificadorUsecaseImpl(eventoGateway);
+    }
+
 }
