@@ -2,6 +2,7 @@ package dev.java10x.EventClean.infrastructure.presentation;
 import dev.java10x.EventClean.core.entities.Evento;
 import dev.java10x.EventClean.core.usecases.buscarEventoUsecase;
 import dev.java10x.EventClean.core.usecases.criarEventoUsecase;
+import dev.java10x.EventClean.core.usecases.criarIdentificadorUsecase;
 import dev.java10x.EventClean.core.usecases.filtroIdentificadorUsecase;
 import dev.java10x.EventClean.infrastructure.dtos.EventoDto;
 import dev.java10x.EventClean.infrastructure.exceptions.DuplicateEventException;
@@ -22,16 +23,19 @@ public class EventoController {
     private final buscarEventoUsecase buscarEventoUsecase;
     private final EventoDtoMapper eventoDtoMapper;
     private final filtroIdentificadorUsecase filtroIdentificadorUsecase;
+    private final criarIdentificadorUsecase criarIdentificadorUsecase;
 
-    public EventoController(criarEventoUsecase criarEventoUsecase, buscarEventoUsecase buscarEventoUsecase, EventoDtoMapper eventoDtoMapper, filtroIdentificadorUsecase filtroIdentificadorUsecase) {
+    public EventoController(criarEventoUsecase criarEventoUsecase, buscarEventoUsecase buscarEventoUsecase, EventoDtoMapper eventoDtoMapper, filtroIdentificadorUsecase filtroIdentificadorUsecase, criarIdentificadorUsecase criarIdentificadorUsecase) {
         this.criarEventoUsecase = criarEventoUsecase;
         this.buscarEventoUsecase = buscarEventoUsecase;
         this.eventoDtoMapper = eventoDtoMapper;
         this.filtroIdentificadorUsecase = filtroIdentificadorUsecase;
+        this.criarIdentificadorUsecase = criarIdentificadorUsecase;
     }
 
     @PostMapping("criarevento")
     public ResponseEntity<Map<String, Object>> criarEvento(@RequestBody EventoDto eventoDto) {
+        eventoDto.setIdentificador(criarIdentificadorUsecase.execute());
         Evento novoEvento = criarEventoUsecase.execute(eventoDtoMapper.map(eventoDto));
         Map<String, Object> response = new HashMap<>();
         response.put("messsage", "Evento cadastrado com sucesso no nosso banco de dados.");
