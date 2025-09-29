@@ -17,3 +17,6 @@ jobs:
 
       - name: Build Project
         run: mvn clean install
+
+      - name: Run all tests
+        run: mvn test
